@@ -2,15 +2,13 @@ import React from 'react';
 import axios from 'axios';
 
 const api = {
-    apiKey: 'w4JM4g8Rjdh_SIRJAVA_JJht1eRXuDhn',
-    server_of: 'http://anchoratechs.dv/instabolt.api/',
-    server_on: 'https://restapi.sirjavaofficial.com/'
+    server_of: 'http://localhost:7000/'
 }
-api.apiURL = api.server_of + '?request=';
+api.apiURL = api.server_of;
 
 const app = {
     version: '1.0.0',
-    dbpref: 'cp_'
+    dbpref: 'esk_'
 }
 
 const date = {
@@ -64,7 +62,7 @@ const getFileExtension = (filename) => {
 
 
 // Data Request
-const tokey = '&apiKey=' + api.apiKey + '&apiToken=' + getStorage('userToken');
+const token = getStorage('userToken');
 const serData = (obj) => {
     var str = [];
     for (var p in obj) {
@@ -77,7 +75,7 @@ const serData = (obj) => {
 const jsnData = (str) => {
     var obj = {};
     var data = str.split('&');
-    for(var key in data){
+    for (var key in data) {
         obj[data[key].split('=')[0]] = data[key].split('=')[1];
     }
     return obj;
@@ -86,29 +84,16 @@ const postData = async (action, data = {}) => {
     try {
         const response = await fetch(api.apiURL + action, {
             method: 'POST',
-            headers: { 'Content-Type':'application/x-www-form-urlencoded' },
-            body: serData(data) + tokey
+            headers: { 'Content-Type':'application/json', 'Authorization': 'Basic ' + token },
+            body: JSON.stringify(data)
         });
         return response.json();
     }
     catch (error) {
         console.error(error);
     }
-    // return await axios.post(api.apiURL + action, data).then(res => {
-    //     return res.data;
-    // });
 }
 const getData = async (action) => {
-    // try {
-    //     const response = await fetch(api.apiURL + action, {
-    //         method: 'GET',
-    //         headers: { 'Content-Type':'application/json' }
-    //     });
-    //     return response.json();
-    // }
-    // catch (error) {
-    //     console.error(error);
-    // }
     return await axios.get(api.apiURL + action).then(res => {
         return res.data;
     }).catch(e => {

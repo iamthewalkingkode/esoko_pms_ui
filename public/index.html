@@ -2,119 +2,67 @@
 <html lang="en">
 
 <head>
-  <meta charset="utf-8" />
-  <link rel="shortcut icon" href="https://mymaxoffice.com/favicon.ico" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Leadership Summit 2019 - Kumasi</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link type="image/png" rel="shortcut icon" href="assets/favicon.png">
+  <link type="image/png" rel="icon" href="assets/favicon.png">
+  <title>Esoko PMS : UI { React }</title>
 
-  <meta name="mobile-web-app-capable" content="yes">
-  <meta name="application-name" content="Sir Java Official">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="Sir Java Official">
-  <meta name="theme-color" content="#e15d3a">
-  <!-- <link rel="manifest" href="/manifest.json" /> -->
+  <!-- Bootstrap Core CSS -->
+  <link href="assets/css/bootstrap.min.css" rel="stylesheet">
 
-  <link rel="shortcut icon" href="https://mymaxoffice.com/favicon.ico">
-  <link rel="stylesheet" href="/assets/css/bootstrap.css">
-  <link rel="stylesheet" href="/assets/css/custom.css">
-  <link rel="stylesheet" href="/assets/css/slick.css">
-  <link rel="stylesheet" href="/assets/css/slick-theme.css">
-  <link rel="stylesheet" href="/assets/js/sweetalert/sweetalert.min.css">
-  <!-- <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css"/> -->
-  <script src="/assets/js/jquery.js"></script>
+  <!-- Custom CSS -->
+  <link href="assets/css/sb-admin.css" rel="stylesheet">
 
-  <!-- RavePay Script -->
-  <script type="text/javascript" src="https://api.ravepay.co/flwv3-pug/getpaidx/api/flwpbf-inline.js"></script>
+  <!-- Custom Fonts -->
+  <link href="assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link href="assets/summernote/summernote.css" rel="stylesheet" type="text/css">
+  <link href="assets/bootstrap-datepicker/css/bootstrap-datepicker.min.css" rel="stylesheet" type="text/css">
+  <link href="assets/sweetalert/sweetalert.min.css" rel="stylesheet" type="text/css">
+  <style>
+    .navbar-inverse {
+      background-color: #3675aa;
+      border-color: #3675aa;
+    }
+
+    .navbar-inverse .navbar-brand {
+      color: #fff;
+    }
+  </style>
 </head>
 
 <body class="sidebar-icon-only sidebar-light">
   <noscript>You need to enable JavaScript to run this app.</noscript>
   <div id="root"></div>
 
-  <script src="/assets/js/jquery.easing.js"></script>
-  <script src="/assets/js/bootstrap.min.js"></script>
-  <script src="/assets/js/wow.min.js"></script>
-  <script src="/assets/js/slick.min.js"></script>
-  <script src="/assets/js/sweetalert/sweetalert.min.js"></script>
-  <!-- <script type="text/javascript" src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script> -->
+  <script src="assets/js/jquery.js"></script>
+  <script src="assets/js/bootstrap.min.js"></script>
+  <script src="assets/summernote/summernote.min.js"></script>
+  <script src="assets/sweetalert/sweetalert.min.js"></script>
+  <script src="assets/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
   <script>
-    $(document).ready(function (e) {
-      new WOW().init();
-      // $('.datatable').DataTable();
-    });
-
-    function fullAvatar(url, link = '') {
-      $('#fullPicture a, #fullPicture i').hide();
-      if (link) {
-        $('#fullPicture a').attr('href', link).show();
-        $('#fullPicture i').hide();
-      } else {
-        $('#fullPicture a').hide();
-        $('#fullPicture i').show();
-      }
-      $('#fullPicture .img-thumbnail').attr('src', url);
-      $('#fullPicture').modal('show');
-    }
-    var showSwal = function (type, text) {
-      switch (type) {
-        case 'success':
-          var icon = 'success';
-          var heading = 'Success';
-          var loaderBg = '#f96868';
-          break;
-        case 'info':
-          var icon = 'info';
-          var heading = 'Info';
-          var loaderBg = '#46c35f';
-          break;
-        case 'warning':
-          var icon = 'warning';
-          var heading = 'Warning';
-          var loaderBg = '#57c7d4';
-          break;
-        case 'danger':
-          var icon = 'error';
-          var heading = 'Error';
-          var loaderBg = '#f2a654';
-          break;
-      }
-      swal({
-        title: heading,
-        text: text,
-        type: icon,
-        showCancelButton: true,
-        confirmButtonColor: loaderBg,
-        confirmButtonText: 'Okay !',
-        closeOnConfirm: true
+    $(document).ready(function () {
+      $('.datepicker').datepicker({
+        showAnim: 'clip',
+        autoclose: true,
+        todayHighlight: true,
+        format: 'yyyy-mm-dd',
+        dateFormat: 'yy-mm-dd'
       });
-    }
-
-
-    var countDownDate = new Date('July 5, 2019 00:00:00').getTime();
-    // if (document.getElementById('countdown')) {
-    var x = setInterval(function () {
-      var now = new Date().getTime();
-      var distance = countDownDate - now;
-      var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-      document.getElementById('countdown').innerHTML = '<div class="col-lg-3 col-xs-3"><div>' + days + '</div> <small>days</small></div>' +
-        '<div class="col-lg-3 col-xs-3"><div>' + hours + '</div> <small>hours</small></div>' +
-        '<div class="col-lg-3 col-xs-3"><div>' + minutes + '</div> <small>minutes</small></div>' +
-        '<div class="col-lg-3 col-xs-3"><div>' + seconds + '</div> <small>seconds</small></div>';
-      if (distance < 0) {
-        clearInterval(x);
-        document.getElementById('countdown').innerHTML = '<div class="col-lg-3 col-xs-3"><div>00</div> <small>days</small></div>' +
-          '<div class="col-lg-3 col-xs-3"><div>00</div> <small>hours</small></div>' +
-          '<div class="col-lg-3 col-xs-3"><div>00</div> <small>minutes</small></div>' +
-          '<div class="col-lg-3 col-xs-3"><div>00</div> <small>seconds</small></div>';
-      }
-    }, 1000);
-    // }
+      $('.summernote').summernote({
+        height: 350,
+        toolbar: [
+          ['headline', ['style']],
+          ['style', ['bold', 'italic', 'underline', 'superscript', 'subscript', 'strikethrough', 'clear']],
+          ['textsize', ['fontsize']],
+          ['alignment', ['ul', 'ol', 'paragraph', 'lineheight']],
+        ]
+      });
+    });
   </script>
-
 </body>
 
 </html>
